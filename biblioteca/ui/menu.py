@@ -2,6 +2,8 @@ from services.inventario_service import InventarioService
 from models.biblioteca import Biblioteca
 from models.libro import Libro
 
+PROMPT_TITULO = "Título: "
+
 def pedir_texto(msg):
     while True:
         t = input(msg).strip()
@@ -34,15 +36,15 @@ def iniciar_menu():
     biblioteca.agregar_libro(Libro("1984", "Orwell", 10, 1))
 
     opciones = {
-        "1": lambda: print(servicio.prestar(pedir_texto("Título: "))),
-        "2": lambda: print(servicio.devolver(pedir_texto("Título: "))),
+        "1": lambda: print(servicio.prestar(pedir_texto(PROMPT_TITULO))),
+        "2": lambda: print(servicio.devolver(pedir_texto(PROMPT_TITULO))),
         "3": lambda: print(servicio.comprar(
-            pedir_texto("Título: "),
+            pedir_texto(PROMPT_TITULO),
             pedir_texto("Autor: "),
             pedir_float("Precio: "),
             pedir_int("Cantidad: ")
         )),
-        "4": lambda: print(servicio.vender(pedir_texto("Título: "))),
+        "4": lambda: print(servicio.vender(pedir_texto(PROMPT_TITULO))),
         "5": lambda: print("\n".join(servicio.catalogo())),
     }
 

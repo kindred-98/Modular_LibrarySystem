@@ -1,5 +1,8 @@
 from .libro import Libro
 
+MSG_LIBRO_NO_ENCONTRADO = "❌ Libro no encontrado."
+
+
 class Biblioteca:
     """
     Gestiona un catálogo de libros y operaciones sobre ellos.
@@ -23,7 +26,7 @@ class Biblioteca:
     def prestar_libro(self, titulo: str) -> str:
         libro = self.buscar_libro(titulo)
         if not libro:
-            return "❌ Libro no encontrado."
+            return MSG_LIBRO_NO_ENCONTRADO
         if libro.prestado:
             return "⚠️ Ya está prestado."
         libro.prestado = True
@@ -32,7 +35,7 @@ class Biblioteca:
     def devolver_libro(self, titulo: str) -> str:
         libro = self.buscar_libro(titulo)
         if not libro:
-            return "❌ Libro no encontrado."
+            return MSG_LIBRO_NO_ENCONTRADO
         if not libro.prestado:
             return "⚠️ No estaba prestado."
         libro.prestado = False
@@ -50,7 +53,7 @@ class Biblioteca:
     def vender_libro(self, titulo: str) -> str:
         libro = self.buscar_libro(titulo)
         if not libro:
-            return "❌ Libro no encontrado."
+            return MSG_LIBRO_NO_ENCONTRADO
         if libro.prestado:
             return "⚠️ No se puede vender un libro prestado."
         if libro.cantidad <= 0:
